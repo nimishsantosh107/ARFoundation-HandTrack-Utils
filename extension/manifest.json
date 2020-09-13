@@ -1,0 +1,37 @@
+{
+	"manifest_version": 2,
+	"description": "AR Interact controller",
+
+	"name": "ARInteract",
+	"version": "1.0",
+
+	"permissions": [
+	  	"tabs",
+	  	"activeTab",
+	  	"http://*/*",
+	  	"https://*/*"
+	],
+
+	"icons": {
+		"48": "icons/logo48.png",
+		"96": "icons/logo96.png"
+	},
+
+  	"background": {
+    	"scripts": ["scripts/background/socket.io.min.js", "scripts/background/background.js"]
+  	},
+
+	"content_scripts": [
+		{
+			"matches": ["*://www.youtube.com/watch*"],
+			"js": ["scripts/content/content.js"]
+		}
+	],
+
+	"page_action": {
+		"show_matches": ["*://www.youtube.com/watch*"],
+		"default_icon": "icons/logo48.png",
+		"default_popup": "scripts/popup/app.html",
+		"default_title": "ARInteract"
+	}
+}
