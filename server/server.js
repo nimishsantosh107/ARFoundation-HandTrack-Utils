@@ -9,7 +9,9 @@ const IP4 = "192.168.1.100";
 
 var app = express();
 var httpServer = http.Server(app);
-var io = socketIO(httpServer); 
+var io = socketIO(httpServer);
+
+app.use("/test", express.static(__dirname + "/test"));
 
 //SOCKET HANDLING
 io.on("connection", (socket)=>{
@@ -18,7 +20,7 @@ io.on("connection", (socket)=>{
 	//CONTROLS
 	socket.on('controls', (data)=>{
 		console.log(data);
-		socket.broadcast.emit('updateControls', data);
+		io.emit('updateControls', data);
 	});
 
 	//HANDLE DISCONNECTION

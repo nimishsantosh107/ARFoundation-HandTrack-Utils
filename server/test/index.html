@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <script src="socket.io.min.js"></script>
+    <script>
+        console.log("TEST SCRIPT");
+        var socket = io("http://localhost:3000/");
+
+        socket.on('connect', async function () {
+            console.log('CONNECTED');
+
+            socket.on('updateControls', function (data) {
+                console.log("updateControls: ",data);
+            });
+        });
+
+        function sendControl(controldata) {
+            let data = {controls: controldata};
+            socket.emit('controls',data);
+            console.log(data);
+        }
+    </script>
+</body>
+</html>
