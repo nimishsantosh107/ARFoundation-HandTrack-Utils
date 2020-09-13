@@ -47,3 +47,4 @@ if(chrome){
 }else {thisbrowser = browser;}
 //HANDLE INTERACTION B/W APP and BACKGROUND
 thisbrowser.runtime.onMessage.addListener(handleInteraction);
+console.log("SETUP CONTENT SCRIPT");
